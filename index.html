@@ -5,145 +5,77 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PTE2 — Indústria</title>
 <meta name="description" content="Síntese executiva da seção de Indústria do PTE2 com roadmap 25–30 / 30–40 / 40–50 e KPIs essenciais por bloco.">
+<link rel="stylesheet" href="styles.css">
 <style>
-  :root{--bg:#0a0a0a;--fg:#f5f5f7;--muted:#9b9ba1;--accent:#66d9ff;--accent2:#baff72;--card:#111114;--line:#23232a}
-  *{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  a{color:inherit;text-decoration:none}
+/* Minimal overrides in case styles.css não esteja junto no preview */
+:root{--bg:#0a0a0a;--fg:#f5f5f7;--muted:#9b9ba1;--accent:#66d9ff;--card:#1C1D34}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",system-ui}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto}
+header.hero{padding:220px 20px 90px 20px;border-bottom:1px solid #15151a;background:
+  radial-gradient(1000px 600px at 50% -10%, rgba(102,217,255,.15), transparent 60%),
+  radial-gradient(800px 500px at 85% 5%, rgba(186,255,114,.10), transparent 60%),
+  radial-gradient(900px 520px at 15% 0%, rgba(150,170,255,.10), transparent 60%),
+  linear-gradient(180deg, #0b0c10 0%, #0a0a0a 60%, #0a0a0a 100%);
+  position:relative;overflow:hidden}
+.eyebrow{letter-spacing:.2em;color:#9b9ba1;text-transform:uppercase;font-size:12px}
+h1{font-size:56px;line-height:1.04;margin:10px 0 6px;font-weight:700;letter-spacing:-.02em}
+.subtitle{font-size:20px;color:#c9c9cf;max-width:74ch}
+section{padding:60px 20px}
+h2{font-size:40px;letter-spacing:-.02em;margin:0 0 16px}
+p.lead{color:#cfcfd6;font-size:18px;max-width:74ch}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+.card{background:#1C1D34;border:1px solid #1b1b21;border-radius:18px;padding:28px}
+.card h3{margin:0 0 8px 0;font-size:22px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:10px}
+.roadmap-teasers{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:12px}
+.teaser{background:transparent;border:1px solid #1C1D34;border-radius:16px;padding:18px}
+.teaser a{display:block;font-weight:600;color:#E6E8FF}
+.teaser p{margin:6px 0 0 0;color:#d7d7dd;font-size:14px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.btn{padding:12px 18px;border-radius:14px;border:1px solid #2a2a30;background:#141418;color:#fff;font-weight:600}
+.btn:hover{background:#191921}
+.btn.primary{background:linear-gradient(135deg,#66d9ff,#3ad1ff);color:#001018;border:none}
 
-  /* Barra de navegação (flat) */
-  .nav{position:fixed;top:0;left:0;right:0;background:#2F2B4C;border-bottom:1px solid #1b1b1f;z-index:1000}
-  .nav .wrap{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
-  .logo{display:flex;gap:10px;align-items:center}
-  .nav a{padding:8px 12px;border-radius:10px;color:var(--fg);opacity:.95}
-  .nav a:hover, .nav a:focus{background:#3a3663;opacity:1;outline:none}
+.scenarios{margin-top:8px;}
+.scenario{
+  border-radius:10px;
+  padding:30px 40px;
+  color:#fff;
+  display:grid;
+  grid-template-columns: var(--sigla-width,80px) var(--title-width,240px) 1fr;
+  gap:10px;
+  align-items:center;
+  margin-bottom:14px;
+}
+.scenario .sigla{
+  font-size:4.5em;
+  line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.scenario .title{
+  font-size:1.8em;
+  line-height:1em;
+}
+.scenario .desc{
+  font-size:1.1em;
+  color:#eef0f7;
+  /* ocupa todo o espaço restante (1fr) */
+}
+/* manter cores e permitir ajustes por cenário */
+.scenario.tb{background:#196B24; --sigla-width:70px; --title-width:130px; font-size: 120%}
+.scenario.ta{background:#4EA72E; --sigla-width:50px; --title-width:130px}
+.scenario.tg{background:#0D3512; --sigla-width:50px; --title-width:130px}
+.scenarios .sigla,
+.scenarios .title{
+  font-family: "Bahnschrift Condensed", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.roadmap-teasers div { font-size: 24px;background-color: #156082; }
+.lever-grid { grid-template-columns:repeat(4, 1fr) }
+.lead { font-size: 28px !important }
 
-  /* Desktop menu */
-  .menu{display:flex;gap:8px;align-items:center}
-  .dropdown{position:relative;display:inline-block}
-  .dropbtn{
-    padding:8px 12px;border-radius:10px;color:var(--fg);opacity:.95;cursor:pointer;display:flex;align-items:center;gap:8px;
-    background:transparent;border:none;font:inherit
-  }
-  .dropbtn:after{content:"▾";font-size:12px;opacity:.9}
-  .dropdown-content{
-    display:none;position:absolute;top:38px;left:0;min-width:220px;
-    background:#1C1D34;border:1px solid #242541;border-radius:12px;overflow:hidden;
-    box-shadow:0 10px 24px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.2);
-  }
-  /* Open on hover (desktop) */
-  @media (min-width:981px){
-    .dropdown:hover .dropdown-content{display:block}
-  }
-  .dropdown-content[aria-hidden="false"]{display:block}
-  .dropdown-content a{
-    display:block;padding:10px 14px;color:#e6e6ee;border-bottom:1px solid #27283f
-  }
-  .dropdown-content a:last-child{border-bottom:none}
-  .dropdown-content a:hover, .dropdown-content a:focus{background:#2A2B49;outline:none}
-
-  /* Mobile hamburger */
-  .hamburger{display:none;align-items:center;gap:10px}
-  .hamburger button{
-    background:transparent;border:0;color:#fff;cursor:pointer;
-    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
-    border-radius:12px;position:relative;z-index:1001;
-  }
-  .hamburger button:focus{outline:2px solid rgba(255,255,255,.35)}
-  .hamburger svg{width:26px;height:26px;pointer-events:none}
-
-  /* Drawer overlay */
-  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:999}
-  .overlay.show{opacity:1;pointer-events:auto}
-  .drawer{
-    position:fixed;top:0;left:0;height:100vh;width:min(86%, 340px);
-    background:#1C1D34;border-right:1px solid #242541;transform:translateX(-100%);
-    transition:transform .25s ease;z-index:1000;border-top-right-radius:12px;border-bottom-right-radius:12px;
-    display:flex;flex-direction:column
-  }
-  .drawer.show{transform:translateX(0)}
-  .drawer-header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #27283f}
-  .drawer-header .title{font-weight:600;letter-spacing:.02em}
-  .drawer a, .drawer button.linklike{
-    display:block;padding:14px 18px;text-align:left;border:none;background:none;color:#e6e6ee;width:100%;font:inherit;cursor:pointer
-  }
-  .drawer a:hover, .drawer a:focus, .drawer button.linklike:hover, .drawer button.linklike:focus{
-    background:#2A2B49;outline:none
-  }
-
-  header.hero{
-    padding:240px 20px 80px 60px;border-bottom:1px solid #15151a;
-    background-color: rgba(20,21,37,0.9);
-    background-image: url('hr_pte2_80.png');
-    background-size: calc(max(1200px, 100%));
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-blend-mode: lighten;
-    position:relative;overflow:hidden;
-  }
-  header.hero::after{
-    content:"";position:absolute;inset:0;pointer-events:none;opacity:1;
-    background-image:
-      radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-      radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
-    background-size:24px 24px, 36px 36px;
-    background-position:0 0, 12px 12px;
-    mix-blend-mode:overlay;
-  }
-  .wrap{max-width:1200px;margin:0 auto}
-  .eyebrow{letter-spacing:.2em;color:#cfd0d6;text-transform:uppercase;font-size:12px}
-  h1{font-size:56px;line-height:1.04;margin:10px 0 6px;font-weight:700;letter-spacing:-.02em}
-  .subtitle{font-size:20px;color:#c9c9cf;max-width:74ch}
-  section{padding:50px 20px}
-  h2{font-size:40px;letter-spacing:-.02em;margin:0 0 16px}
-  p.lead{color:#cfcfd6;font-size:18px;max-width:74ch}
-
-  /* Alavancas */
-  .levers{margin-top:8px}
-  .lever-grid{display:grid;grid-template-columns:repeat(5, 1fr);gap:16px}
-  .lever{
-    background:transparent;border:1px solid #1C1D34;border-radius:18px;padding:24px;
-    display:flex;align-items:center;justify-content:center;text-align:left;position:relative;overflow:hidden;
-    transition:background-color .2s ease, border-color .2s ease;
-  }
-  .lever:hover, .lever:focus-within{background:rgba(28,29,52,0.08);border-color:#2A2B49}
-  .lever .num{position:absolute;top:12px;right:12px;font-weight:200;font-size:24px;color:#b9bdff;opacity:.9}
-  .lever p{margin:0;color:#d7d7dd;line-height:1.5;font-size:1.1em;font-weight:200}
-
-  /* Timeline */
-  .timeline3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
-  .tblock{position:relative;background:#1C1D34;border-radius:22px;padding:32px;display:flex;flex-direction:column;gap:12px;min-height:440px;
-    box-shadow:0 10px 24px rgba(0,0,0,.28), 0 2px 6px rgba(0,0,0,.18) }
-  .tbadge{display:inline-block;border-radius:14px;padding:10px 16px;background:#282A4B;font-weight:200;letter-spacing:.02em;font-size:32px;color:#d7d7dd;margin:-24px -24px 6px -24px;text-alignment:center}
-  .thdr{display:flex;align-items:baseline;justify-content:space-between;margin-top:2px}
-  h3{margin:0;font-size:22px;letter-spacing:-.01em}
-  .tlist, .scard ul{display:grid;gap:14px;margin:14px 0px;padding-inline-start:0px; font-size:1.1em}
-  .tlist li, .scard li{list-style:none;padding-left:14px;position:relative;color:#d7d7dd}
-  .tlist li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:12px;border-radius:6px;background:linear-gradient(180deg,#00B8CC,#009CB3)}
-  .kpi-card{border:0;background:transparent;border-radius:16px;padding:0;margin-top:auto}
-  .kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  .kpi{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;border-radius:12px;background:#282A4B;box-shadow:none}
-  .kpi .v{font-weight:900;font-size:28px;line-height:1;color:#FFFFFF}
-  .kpi .t{font-size:12px;color:#FFFFFF;margin-top:6px;text-align:center}
-
-  .static-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
-  .scard{border:1px solid #1b1b21;background:#1C1D34;border-radius:18px;padding:32px;box-shadow:0 10px 24px rgba(0,0,0,.28), 0 2px 6px rgba(0,0,0,.18)}
-  #recos .scard li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:12px;border-radius:6px;background:linear-gradient(180deg,#3A64C0,#2C53A0)}
-  #oportunidades .scard li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:12px;border-radius:6px;background:linear-gradient(180deg,#FFB78E,#F5A276)}
-
-  @media (max-width:1200px){ .lever p{font-size:1.05em} }
-  @media (max-width:1024px){ .lever-grid{grid-template-columns:repeat(3, 1fr)} }
-  @media (max-width:980px){
-    .menu{display:none}          /* esconde menu desktop */
-    .hamburger{display:flex}     /* mostra hamburger */
-    .timeline3{grid-template-columns:1fr}
-    .static-cards{grid-template-columns:1fr}
-    h1{font-size:42px}
-  }
-  @media (max-width:680px){ .lever-grid{grid-template-columns:repeat(2, 1fr)} }
-  @media (max-width:420px){ .lever-grid{grid-template-columns:1fr} }
-
-  footer{padding:60px 20px;border-top:1px solid #1b1b20;color:#a7a7ad;text-align: right}
-  .seal {display:inline-block;gap:10px;opacity:.7}
 </style>
 </head>
 <body>
@@ -151,24 +83,22 @@
   <div class="wrap">
     <div class="logo"><img src="logo_pte2.png" style="height:72px;margin:14px 0px" alt="PTE2"></div>
 
-    <!-- Desktop menu -->
     <div class="menu">
-      <a href="#roadmap">Sobre o PTE</a>
+      <a href="index.html">Sobre o PTE</a>
       <div class="dropdown" id="roadmapsDropdown">
         <button class="dropbtn" id="roadmapsBtn" aria-haspopup="true" aria-expanded="false" aria-controls="roadmapsMenu">Roadmaps</button>
         <div class="dropdown-content" id="roadmapsMenu" role="menu" aria-hidden="true">
-          <a href="#roadmap" role="menuitem" tabindex="-1">AFOLU</a>
-          <a href="#roadmap" role="menuitem" tabindex="-1">Indústria</a>
-          <a href="#roadmap" role="menuitem" tabindex="-1">Setor Energético</a>
-          <a href="#roadmap" role="menuitem" tabindex="-1">Transportes</a>
-          <a href="#roadmap" role="menuitem" tabindex="-1">Cidades</a>
+          <a href="roadmap-afolu.html" role="menuitem" tabindex="-1">AFOLU</a>
+          <a href="roadmap-industria.html" role="menuitem" tabindex="-1">Indústria</a>
+          <a href="roadmap-energetico.html" role="menuitem" tabindex="-1">Setor Energético</a>
+          <a href="roadmap-transportes.html" role="menuitem" tabindex="-1">Transportes</a>
+          <a href="roadmap-cidades.html" role="menuitem" tabindex="-1">Cidades</a>
         </div>
       </div>
-      <a href="#roadmap">Painel</a>
-      <a href="#roadmap">Downloads</a>
+      <a href="painel.html">Painel</a>
+      <a href="downloads.html">Downloads</a>
     </div>
 
-    <!-- Mobile hamburger -->
     <div class="hamburger">
       <button id="openDrawer" aria-label="Abrir menu" aria-controls="mobileDrawer" aria-expanded="false" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -179,175 +109,111 @@
   </div>
 </nav>
 
-<!-- Drawer + overlay -->
 <div class="overlay" id="overlay" hidden></div>
 <aside class="drawer" id="mobileDrawer" aria-hidden="true">
   <div class="drawer-header">
     <div class="title">Menu</div>
     <button id="closeDrawer" aria-label="Fechar menu" type="button" style="background:transparent;border:0;color:#fff;cursor:pointer;padding:8px;border-radius:10px">✕</button>
   </div>
-  <!-- Mobile: roadmaps como itens diretos (sem agrupamento) -->
-  <a href="#roadmap">Sobre o PTE</a>
-  <a href="#roadmap">AFOLU</a>
-  <a href="#roadmap">Indústria</a>
-  <a href="#roadmap">Setor Energético</a>
-  <a href="#roadmap">Transportes</a>
-  <a href="#roadmap">Cidades</a>
-  <a href="#roadmap">Painel</a>
-  <a href="#roadmap">Downloads</a>
+  <a href="index.html">Sobre o PTE</a>
+  <div class="group" role="group" aria-labelledby="gtitle-roadmaps">
+    <div class="gtitle" id="gtitle-roadmaps">Roadmaps</div>
+    <div class="gbody">
+      <a href="roadmap-afolu.html">AFOLU</a>
+      <a href="roadmap-industria.html">Indústria</a>
+      <a href="roadmap-energetico.html">Setor Energético</a>
+      <a href="roadmap-transportes.html">Transportes</a>
+      <a href="roadmap-cidades.html">Cidades</a>
+    </div>
+  </div>
+  <a href="painel.html">Painel</a>
+  <a href="downloads.html">Downloads</a>
 </aside>
 
-<header class="hero">
+<header class="hero" id="top">
   <div class="wrap">
     <div>
-      <div class="eyebrow">ROADMAP INDÚSTRIA</div>
-      <h1>Indústria brasileira: baixo carbono como vantagem competitiva</h1>
-      <p class="subtitle">Descarbonizar a base industrial é chave para transformar <em>vantagens comparativas</em> em <em>vantagens competitivas</em>: cadeias de valor limpas, capacidade exportadora e empregos qualificados.</p>
+      <div class="eyebrow">PROGRAMA DE TRANSIÇÃO ENERGÉTICA</div>
+      <h1>PTE2: visão integrada para uma economia de baixo carbono e competitiva</h1>
+      <p class="subtitle">O PTE2 articula política energética e industrial, coordena ações setoriais (AFOLU, Indústria, Energético, Transportes e Cidades) e estabelece metas e trilhas para neutralidade climática até 2050, com ganhos de produtividade, emprego e segurança energética.</p>
+    </div>
+  </div>
+
+  <div class="wrap levers">
+    <p class="lead">Perguntas norteadoras</p>
+    <div class="lever-grid">
+      <div class="lever"><span class="num">1</span><p>Qual é a trajetória de custo ótimo para o Brasil, considerando que o país cumpra sua NDC?</p></div>
+      <div class="lever"><span class="num">2</span><p>O sistema elétrico tem capacidade de absorver a maior e mais acelerada penetração de energia gerada por fontes renováveis?</div>
+      <div class="lever"><span class="num">3</span><p>As trajetórias de neutralidade de GEE em 2050 são compatíveis com o crescimento econômico e a geração de empregos?</p></div>
+      <div class="lever"><span class="num">4</span><p>Os planos e políticas públicas nacionais dedicados à transição energética em andamento hoje podem corroborar para a redução das desigualdades socioeconômicas regionais?</p></div>
     </div>
   </div>
 </header>
 
-<section id="alavancas">
-  <div class="wrap levers">
-    <h2>Alavancas</h2>
-    <p class="lead">Cinco frentes de execução para acelerar a descarbonização e capturar valor competitivo.</p>
-    <div class="lever-grid">
-      <div class="lever"><span class="num">1</span><p><strong>Atualizar parques térmicos:</strong> substituir GLP/óleo por biomassa sustentável e biogás em caldeiras e secadores; eletrificar calor de baixa/média temperatura.</p></div>
-      <div class="lever"><span class="num">2</span><p><strong>H₂ verde</strong> em fornos de aço, vidro e química, começando por blends e ilhas dedicadas em clusters industriais com infraestrutura compartilhada.</p></div>
-      <div class="lever"><span class="num">3</span><p><strong>Clínquer</strong> com misturas calcárias/LC3, combustíveis alternativos, captura em chaminé onde custo‑efetivo; <strong>DRI‑EAF</strong> com H₂/biogás no aço.</p></div>
-      <div class="lever"><span class="num">4</span><p><strong>Escalonar processamento</strong> de níquel, lítio, terras raras e alumínio com energia 100% renovável e rastreabilidade de emissões e biodiversidade.</p></div>
-      <div class="lever"><span class="num">5</span><p><strong>Conteúdo local verde</strong> para eólica/solar e equipamentos de rede; fabricação de eletrolisadores, turbinas eólicas e componentes de baterias.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="roadmap">
+<section id="sobre">
   <div class="wrap">
-    <h2>Roadmap</h2>
-    <p class="lead">Ações por período e os dois KPIs centrais (valor em destaque e rótulo abaixo).</p>
-
-    <div class="timeline3">
-      <div class="tblock">
-        <span class="tbadge">2025~30</span>
-        <div class="thdr"><h3>Arranque</h3></div>
-        <ul class="tlist">
-          <li>Siderurgia: ampliar rotas de aço verde com carvão vegetal em AF dedicados.</li>
-          <li>Cimento: &gt;20% de substituição térmica via coprocessamento de resíduos/biomassa.</li>
-          <li>Química &amp; fertilizantes: início de matérias-primas verdes.</li>
-          <li>Indústria “verde” de bens de capital: iniciar cadeias (aerogeradores, baterias, eletrolisadores).</li>
-          <li>Programas de eficiência energética industrial e economia circular.</li>
-        </ul>
-        <div class="kpi-card">
-          <div class="kpi-grid">
-            <div class="kpi"><div class="v">-10%</div><div class="t">Emissões energéticas industriais</div></div>
-            <div class="kpi"><div class="v">25%</div><div class="t">Renováveis no uso térmico</div></div>
-          </div>
-        </div>
+    <h2>Sobre o PTE</h2>
+    <p class="lead">Propósito, escopo e princípios que orientam a transição energética brasileira no horizonte 2025–2050.</p>
+    <div class="grid3">
+      <div class="card">
+        <h3>Propósito</h3>
+        <p>Conduzir a descarbonização com foco em competitividade, segurança de suprimento e inclusão, posicionando o Brasil como líder em cadeias de valor de baixo carbono.</p>
       </div>
-
-      <div class="tblock">
-        <span class="tbadge">2030~40</span>
-        <div class="thdr"><h3>Escala</h3></div>
-        <ul class="tlist">
-          <li>Siderurgia: biometano substituindo GN; expansão do aço de baixa emissão.</li>
-          <li>Cimento: pilotos de CCS e maior uso de substitutos de clínquer (LC3, pozolanas).</li>
-          <li>Química &amp; fertilizantes: aumento expressivo de biomateriais e matérias-primas verdes.</li>
-          <li>Integração energia–indústria para reduzir custo e puxar inovação.</li>
-        </ul>
-        <div class="kpi-card">
-          <div class="kpi-grid">
-            <div class="kpi"><div class="v">-25%</div><div class="t">Emissões energéticas industriais</div></div>
-            <div class="kpi"><div class="v">50%</div><div class="t">Renováveis no uso térmico</div></div>
-          </div>
-        </div>
+      <div class="card">
+        <h3>Abordagem</h3>
+        <p>Integração energia–indústria–território, priorizando projetos “prontos para escalar” e marcos legais para destravar investimento privado.</p>
       </div>
-
-      <div class="tblock">
-        <span class="tbadge">2040~50</span>
-        <div class="thdr"><h3>Profundidade &amp; consolidação</h3></div>
-        <ul class="tlist">
-          <li>Adoção generalizada de biometano, eletrificação e CCS em processos térmicos.</li>
-          <li>Siderurgia com hidrogênio verde e aço de emissão quase nula.</li>
-          <li>Cimento com captura de carbono consolidada.</li>
-          <li>Química &amp; fertilizantes com &gt;50% de matérias-primas verdes.</li>
-          <li>Indústria de bens de capital “verde” competitiva globalmente.</li>
-        </ul>
-        <div class="kpi-card">
-          <div class="kpi-grid">
-            <div class="kpi"><div class="v">-40%</div><div class="t">Emissões energéticas industriais</div></div>
-            <div class="kpi"><div class="v">70%</div><div class="t">Renováveis no uso térmico</div></div>
-          </div>
-        </div>
+      <div class="card">
+        <h3>Horizontes</h3>
+        <p>Três blocos temporais — <strong>2025–2030</strong> (arranque), <strong>2030–2040</strong> (escala), <strong>2040–2050</strong> (consolidação) — com metas e indicadores por setor.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="recos">
+<section id="modelagem">
   <div class="wrap">
-    <h2>Recomendações de Políticas Públicas</h2>
-    <p class="lead">Medidas para acelerar a transição, integrando política energética e industrial e reduzindo riscos de investimento.</p>
-    <div class="static-cards">
-      <div class="scard">
-        <h3>Regulação &amp; Financiamento</h3>
-        <ul>
-          <li>Padrões mínimos de desempenho energético e planos de gestão por planta.</li>
-          <li>Linhas de crédito (BNDES/bancos regionais) para retrofit, recuperação de calor e digitalização.</li>
-          <li>Fundos e garantias para PMEs (first-of-a-kind, risco tecnológico).</li>
-          <li>Compras públicas com critérios de baixo carbono (EPD/MRV) para aço, cimento e alumínio.</li>
-        </ul>
-      </div>
-      <div class="scard">
-        <h3>Inovação &amp; P&amp;D</h3>
-        <ul>
-          <li>Programas nacionais de P&amp;D em setores hard-to-abate (aço, cimento, química/polímeros).</li>
-          <li>Conteúdo local “verde” em cadeias eólica/solar e equipamentos de rede.</li>
-          <li>Laboratórios de teste (H₂, CCS, eletrificação de processo) e padronização técnica.</li>
-          <li>Chamadas públicas para tecnologias digitais (IA/controle avançado) focadas em eficiência e qualidade.</li>
-        </ul>
-      </div>
-      <div class="scard">
-        <h3>Integração Energia–Indústria</h3>
-        <ul>
-          <li>Planejamento conjunto de oferta/demanda elétrica para reduzir custo da eletrificação industrial.</li>
-          <li>Infraestrutura para clusters (energia firme renovável, logística de biometano/H₂).</li>
-          <li>Contratos por diferença de carbono (CfDC) e sinal econômico via mercado de carbono.</li>
-          <li>Rastreabilidade e economia circular com metas setoriais e incentivos fiscais.</li>
-        </ul>
-      </div>
-    </div>
+    <h2>Modelagem</h2>
+    <p class="lead">Foram utilizadas modelagens integradas das instituições Cenergia/COPPE/UFRJ, FIPE/USP e MRTS/ USP — com amplos processos de diálogo multissetorial</p>
+    <ul>
+      <li><strong>COPPE/Cenergia:</strong> Atualizou e expandiu os cenários energéticos com o modelo integrado BLUES, incorporando uso do solo, clima, tecnologia e políticas setoriais.</li>
+      <li><strong>FIPE/USP:</strong> Conectou resultados energéticos e regionais à modelagem macroeconômica, projetando PIB, emprego, investimentos e impactos distributivos.</li>
+      <li><strong>MRTS Consultoria:</strong> Testou a viabilidade elétrica de cada cenário, avaliando segurança do suprimento, potência, risco e requisitos de flexibilidade.
+    </ul>
   </div>
 </section>
 
-<section id="oportunidades">
+<div class="scenarios">
   <div class="wrap">
-    <h2>Oportunidades para o Setor Privado</h2>
-    <p class="lead">Frentes concretas para capturar valor competitivo ao longo da transição.</p>
-    <div class="static-cards">
-      <div class="scard">
-        <h3>Planos &amp; Eficiência</h3>
-        <ul>
-          <li>Planos de descarbonização por planta com metas de intensidade (energia/CO₂) e M&amp;V.</li>
-          <li>Retrofit de processos e recuperação de calor (fornos, secadores, vapor).</li>
-          <li>Digitalização e controle avançado para <em>yield</em> e qualidade.</li>
-        </ul>
+    <h2>Cenários</h2>
+      <div class="scenario tb">
+        <div class="sigla">TB</div>
+        <div class="title">Transição Brasil</div>
+        <div class="desc">Trajetória de custo ótimo para o cumprimento integral da NDC brasileira, explorando vantagens competitivas nacionais como a abundância de renováveis, a bioenergia e o potencial de reflorestamento.</div>
       </div>
-      <div class="scard">
-        <h3>Energia &amp; Insumos limpos</h3>
-        <ul>
-          <li>PPAs renováveis de longo prazo e eletrificação de baixa/média temperatura.</li>
-          <li>Biomassa/biogás/biometano em substituição ao GN onde viável.</li>
-          <li>Pilotos de H₂ para alto grau térmico e integração futura com clusters.</li>
-        </ul>
+      <div class="scenario ta">
+        <div class="sigla">TA</div>
+        <div class="title">Transição Alternativa</div>
+        <div class="desc">Além do cumprimento integral da NDC, introduz condicionantes que levam a uma transição por caminhos tecnológicos e regulatórios diferentes, incluindo precificação de carbono, impactos climáticos sobre oferta e demanda elétrica e mandatos mais fortes para biocombustíveis e eletrificação.</div>
       </div>
-      <div class="scard">
-        <h3>Mercado &amp; Produto</h3>
-        <ul>
-          <li>EPD e rastreabilidade para acessar compras públicas e mercados com prêmio verde.</li>
-          <li>Economia circular: coprocessamento, insumos secundários e mineração urbana.</li>
-          <li>Parcerias em cadeias de bens de capital “verdes” (eólica, solar, rede, eletrolisadores).</li>
-        </ul>
+      <div class="scenario tg">
+        <div class="sigla">TG</div>
+        <div class="title">Transição Global</div>
+        <div class="desc">Além dos esforços do TB e TA, adota um orçamento de carbono alinhado ao limite de 1,5°C, com uma alocação custo ótima a nível global, demandando cortes de emissões mais profundos e rápidos.</div>
       </div>
+    </div>
+  </div>
+
+<section id="setores">
+  <div class="wrap">
+    <h2>Setores e Roadmaps</h2>
+    <p class="lead">Cinco roadmaps coordenados, com ações, KPIs e políticas para cada etapa da transição.</p>
+    <div class="roadmap-teasers">
+      <a href="roadmap-afolu.html"><div class="teaser">AFOLU</div></a>
+      <a href="roadmap-industria.html"><div class="teaser">Indústria</div></a>
+      <a href="roadmap-energetico.html"><div class="teaser">Setor Energético</div></a>
+      <a href="roadmap-transportes.html"><div class="teaser">Transportes</div></a>
+      <a href="roadmap-cidades.html"><div class="teaser">Cidades</div></a>
     </div>
   </div>
 </section>

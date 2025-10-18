@@ -1,0 +1,180 @@
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PTE2 — Indústria</title>
+<meta name="description" content="Síntese executiva da seção de Indústria do PTE2 com roadmap 25–30 / 30–40 / 40–50 e KPIs essenciais por bloco.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap">
+    <div class="logo"><img src="logo_pte2.png" style="height:72px;margin:14px 0px" alt="PTE2"></div>
+
+    <div class="menu">
+      <a href="index.html">Sobre o PTE</a>
+      <div class="dropdown" id="roadmapsDropdown">
+        <button class="dropbtn" id="roadmapsBtn" aria-haspopup="true" aria-expanded="false" aria-controls="roadmapsMenu">Roadmaps</button>
+        <div class="dropdown-content" id="roadmapsMenu" role="menu" aria-hidden="true">
+          <a href="roadmap-afolu.html" role="menuitem" tabindex="-1">AFOLU</a>
+          <a href="roadmap-industria.html" role="menuitem" tabindex="-1">Indústria</a>
+          <a href="roadmap-energetico.html" role="menuitem" tabindex="-1">Setor Energético</a>
+          <a href="roadmap-transportes.html" role="menuitem" tabindex="-1">Transportes</a>
+          <a href="roadmap-cidades.html" role="menuitem" tabindex="-1">Cidades</a>
+        </div>
+      </div>
+      <a href="painel.html">Painel</a>
+      <a href="downloads.html">Downloads</a>
+    </div>
+
+    <div class="hamburger">
+      <button id="openDrawer" aria-label="Abrir menu" aria-controls="mobileDrawer" aria-expanded="false" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="overlay" id="overlay" hidden></div>
+<aside class="drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="drawer-header">
+    <div class="title">Menu</div>
+    <button id="closeDrawer" aria-label="Fechar menu" type="button" style="background:transparent;border:0;color:#fff;cursor:pointer;padding:8px;border-radius:10px">✕</button>
+  </div>
+  <a href="index.html">Sobre o PTE</a>
+  <div class="group" role="group" aria-labelledby="gtitle-roadmaps">
+    <div class="gtitle" id="gtitle-roadmaps">Roadmaps</div>
+    <div class="gbody">
+      <a href="roadmap-afolu.html">AFOLU</a>
+      <a href="roadmap-industria.html">Indústria</a>
+      <a href="roadmap-energetico.html">Setor Energético</a>
+      <a href="roadmap-transportes.html">Transportes</a>
+      <a href="roadmap-cidades.html">Cidades</a>
+    </div>
+  </div>
+  <a href="painel.html">Painel</a>
+  <a href="downloads.html">Downloads</a>
+</aside>
+
+  <div class="wrap" style="width: 100%;max-width: none; margin-top: 140px">
+    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMDkyZDRjYzEtYmIzNi00NjEyLTk4YWUtNTU1NzM5NDYyMjI5IiwidCI6IjMxYTBiYTAwLTZjNTQtNDRiZS1iYjVhLTEwMDZmNGRkZTk0ZSJ9" style="width:100%;height:100vh;border:none"></iframe>
+  </div>
+
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center">
+    <div class="seal"><img src="logos_patrocinio_pte2.png" width="70%" alt="Patrocínios PTE2"></div>
+  </div>
+</footer>
+
+<script>
+// Desktop dropdown: hover open + keyboard support + aria sync
+(function(){
+  const dd = document.getElementById('roadmapsDropdown');
+  const btn = document.getElementById('roadmapsBtn');
+  const menu = document.getElementById('roadmapsMenu');
+  const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
+
+  function openMenu(){
+    btn.setAttribute('aria-expanded','true');
+    menu.setAttribute('aria-hidden','false');
+    items.forEach(i=>i.tabIndex = -1);
+    items[0].tabIndex = 0;
+  }
+  function closeMenu(){
+    btn.setAttribute('aria-expanded','false');
+    menu.setAttribute('aria-hidden','true');
+    items.forEach(i=>i.tabIndex = -1);
+  }
+  function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
+
+  // Hover handling (desktop)
+  dd.addEventListener('mouseenter', openMenu);
+  dd.addEventListener('mouseleave', closeMenu);
+
+  // Keyboard open from button
+  btn.addEventListener('keydown', (e)=>{
+    const k = e.key;
+    if(k === 'ArrowDown' || k === 'Enter' || k === ' '){
+      e.preventDefault();
+      openMenu(); items[0].focus();
+    }
+  });
+
+  // Keyboard navigation inside menu
+  menu.addEventListener('keydown', (e)=>{
+    const idx = items.indexOf(document.activeElement);
+    if(e.key === 'Escape'){ e.preventDefault(); closeMenu(); btn.focus(); }
+    else if(e.key === 'ArrowDown'){
+      e.preventDefault();
+      const next = (idx + 1) % items.length;
+      items[next].focus();
+    }
+    else if(e.key === 'ArrowUp'){
+      e.preventDefault();
+      const prev = (idx - 1 + items.length) % items.length;
+      items[prev].focus();
+    }
+    else if(e.key === 'Home'){ e.preventDefault(); items[0].focus(); }
+    else if(e.key === 'End'){ e.preventDefault(); items[items.length-1].focus(); }
+  });
+})();
+
+// Mobile drawer logic (slide from left, overlay, focus trap)
+(function(){
+  const openBtn = document.getElementById('openDrawer');
+  const closeBtn = document.getElementById('closeDrawer');
+  const drawer = document.getElementById('mobileDrawer');
+  const overlay = document.getElementById('overlay');
+
+  function lockScroll(lock){
+    document.documentElement.style.overflow = lock ? 'hidden' : '';
+    document.body.style.overflow = lock ? 'hidden' : '';
+  }
+
+  function openDrawer(){
+    drawer.classList.add('show');
+    overlay.classList.add('show');
+    overlay.hidden = false;
+    drawer.setAttribute('aria-hidden','false');
+    openBtn.setAttribute('aria-expanded','true');
+    lockScroll(true);
+    closeBtn.focus();
+    document.addEventListener('keydown', trapFocus);
+  }
+  function closeDrawer(){
+    drawer.classList.remove('show');
+    overlay.classList.remove('show');
+    setTimeout(()=>overlay.hidden = true, 200);
+    drawer.setAttribute('aria-hidden','true');
+    openBtn.setAttribute('aria-expanded','false');
+    lockScroll(false);
+    openBtn.focus();
+    document.removeEventListener('keydown', trapFocus);
+  }
+
+  function trapFocus(e){
+    if(e.key !== 'Tab') return;
+    const focusables = drawer.querySelectorAll('a,button');
+    if(focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length-1];
+    if(e.shiftKey && document.activeElement === first){
+      e.preventDefault(); last.focus();
+    } else if(!e.shiftKey && document.activeElement === last){
+      e.preventDefault(); first.focus();
+    }
+  }
+
+  openBtn.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && drawer.classList.contains('show')) closeDrawer();
+  });
+})();
+</script>
+</body>
+</html>
