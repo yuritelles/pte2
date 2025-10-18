@@ -1,0 +1,152 @@
+  :root{--bg:#0a0a0a;--fg:#f5f5f7;--muted:#9b9ba1;--accent:#66d9ff;--accent2:#baff72;--card:#111114;--line:#23232a}
+  *{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  a{color:inherit;text-decoration:none}
+
+  /* Barra de navegação (flat) */
+  .nav{position:fixed;top:0;left:0;right:0;background:#2F2B4C;border-bottom:1px solid #1b1b1f;z-index:1000}
+  .nav .wrap{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+  .logo{display:flex;gap:10px;align-items:center}
+  .nav a{padding:8px 12px;border-radius:10px;color:var(--fg);opacity:.95}
+  .nav a:hover, .nav a:focus{background:#3a3663;opacity:1;outline:none}
+
+  /* Desktop menu */
+  .menu{display:flex;gap:8px;align-items:center}
+  .dropdown{position:relative;display:inline-block}
+  .dropbtn{
+    padding:8px 12px;border-radius:10px;color:var(--fg);opacity:.95;cursor:pointer;display:flex;align-items:center;gap:8px;
+    background:transparent;border:none;font:inherit
+  }
+  .dropbtn:after{content:"▾";font-size:12px;opacity:.9}
+  .dropdown-content{
+    display:none;position:absolute;top:38px;left:0;min-width:220px;
+    background:#1C1D34;border:1px solid #242541;border-radius:12px;overflow:hidden;
+    box-shadow:0 10px 24px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.2);
+  }
+  /* Open on hover (desktop) */
+  @media (min-width:981px){
+    .dropdown:hover .dropdown-content{display:block}
+  }
+  .dropdown-content[aria-hidden="false"]{display:block}
+  .dropdown-content a{
+    display:block;padding:10px 14px;color:#e6e6ee;border-bottom:1px solid #27283f
+  }
+  .dropdown-content a:last-child{border-bottom:none}
+  .dropdown-content a:hover, .dropdown-content a:focus{background:#2A2B49;outline:none}
+
+  /* Mobile hamburger */
+  .hamburger{display:none;align-items:center;gap:10px}
+  .hamburger button{
+    background:transparent;border:0;color:#fff;cursor:pointer;
+    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+    border-radius:12px;position:relative;z-index:1001;
+  }
+  .hamburger button:focus{outline:2px solid rgba(255,255,255,.35)}
+  .hamburger svg{width:26px;height:26px;pointer-events:none}
+
+  /* Drawer overlay */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:999}
+  .overlay.show{opacity:1;pointer-events:auto}
+
+  /* Drawer (RIGHT side) */
+  .drawer{
+    position:fixed;top:0;right:0;height:100vh;width:min(86%, 360px);
+    background:#1C1D34;border-left:1px solid #242541;transform:translateX(100%);
+    transition:transform .26s ease;z-index:1000;border-top-left-radius:12px;border-bottom-left-radius:12px;
+    display:flex;flex-direction:column
+  }
+  .drawer.show{transform:translateX(0)}
+  .drawer-header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #27283f}
+  .drawer-header .title{font-weight:600;letter-spacing:.02em}
+  .drawer a, .drawer button.linklike{
+    display:block;padding:14px 18px;text-align:left;border:none;background:none;color:#e6e6ee;width:100%;font:inherit;cursor:pointer
+  }
+  .drawer a:hover, .drawer a:focus, .drawer button.linklike:hover, .drawer button.linklike:focus{
+    background:#2A2B49;outline:none
+  }
+
+  /* Group box for Roadmaps */
+  .group{
+    margin:10px 12px 6px 12px;border:1px solid #2A2B49;border-radius:12px;overflow:hidden;
+    background:rgba(42,43,73,0.08)
+  }
+  .group .gtitle{
+    padding:10px 14px;font-weight:600;letter-spacing:.02em;color:#dfe2ff;border-bottom:1px solid #2A2B49;background:#242541
+  }
+  .group .gbody a{padding-left:22px}
+
+  header.hero{
+    padding:240px 20px 80px 60px;border-bottom:1px solid #15151a;
+    background-color: rgba(20,21,37,0.9);
+    background-image: url('hr_pte2_80.png');
+    background-size: calc(max(1200px, 100%));
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-blend-mode: lighten;
+    position:relative;overflow:hidden;
+  }
+  header.hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:1;
+    background-image:
+      radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size:24px 24px, 36px 36px;
+    background-position:0 0, 12px 12px;
+    mix-blend-mode:overlay;
+  }
+  .wrap{max-width:1200px;margin:0 auto}
+  .eyebrow{letter-spacing:.2em;color:#009CB3;text-transform:uppercase;font-size:1em}
+  h1{font-size:56px;line-height:1.04;margin:10px 0 6px;font-weight:700;letter-spacing:-.02em}
+  .subtitle{font-size:20px;color:#c9c9cf;max-width:74ch}
+  section{padding:50px 20px}
+  h2{font-size:40px;letter-spacing:-.02em;margin:0 0 16px}
+  p.lead{color:#cfcfd6;font-size:18px;max-width:74ch}
+
+  /* Alavancas */
+  .levers{margin-top:8px}
+  .lever-grid{display:grid;grid-template-columns:repeat(5, 1fr);gap:16px}
+  .lever{
+    background:transparent;border:1px solid #1C1D34;border-radius:18px;padding:24px;
+    display:flex;align-items: start;justify-content:center;text-align:left;position:relative;overflow:hidden;
+    transition:background-color .2s ease, border-color .2s ease;
+  }
+  .lever:hover, .lever:focus-within{background:rgba(28,29,52,0.08);border-color:#2A2B49}
+  .lever .num{position:absolute;top:12px;right:12px;font-weight:200;font-size:24px;color:#b9bdff;opacity:.9}
+  .lever p{margin:0;color:#d7d7dd;line-height:1.5;font-size:1.1em;font-weight:200}
+
+  /* Timeline */
+  .timeline3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
+  .tblock{position:relative;background:#1C1D34;border-radius:22px;padding:32px;display:flex;flex-direction:column;gap:12px;min-height:440px;
+    box-shadow:0 10px 24px rgba(0,0,0,.28), 0 2px 6px rgba(0,0,0,.18) }
+  .tbadge{display:inline-block;border-radius:14px;padding:10px 16px;background:#282A4B;font-weight:200;letter-spacing:.02em;font-size:32px;color:#d7d7dd;margin:-24px -24px 6px -24px;text-align:left}
+  .tbadge span{font-size:.6em;display:block;margin-top:0px}
+  .thdr{display:flex;align-items:baseline;justify-content:space-between;margin-top:2px}
+  h3{margin:0;font-size:22px;letter-spacing:-.01em}
+  .tlist, .scard ul{display:grid;gap:14px;margin:14px 0px;padding-inline-start:0px; font-size:1.1em}
+  .tlist li, .scard li{list-style:none;padding-left:14px;position:relative;color:#d7d7dd}
+  .tlist li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:12px;border-radius:6px;background:linear-gradient(180deg,#00B8CC,#009CB3)}
+  .kpi-card{border:0;background:transparent;border-radius:16px;padding:0;margin-top:auto}
+  .kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .kpi{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;border-radius:12px;background:#282A4B;box-shadow:none}
+  .kpi .v{font-weight:700;font-size:28px;line-height:1;color:#FFFFFF}
+  .kpi .t{font-size:12px;color:#FFFFFF;margin-top:6px;text-align:center}
+
+  .static-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+  .scard{border:1px solid #1b1b21;background:#1C1D34;border-radius:18px;padding:32px;box-shadow:0 10px 24px rgba(0,0,0,.28), 0 2px 6px rgba(0,0,0,.18)}
+  #recos .scard li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:12px;border-radius:6px;background:linear-gradient(180deg,#3A64C0,#2C53A0)}
+  #oportunidades .scard li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:12px;border-radius:6px;background:linear-gradient(180deg,#FFB78E,#F5A276)}
+  .unit {font-size:1em; margin-top: 0px; display: block; color: #d7d7dd; }
+
+  @media (max-width:1200px){ .lever p{font-size:1.05em} }
+  @media (max-width:1024px){ .lever-grid{grid-template-columns:repeat(3, 1fr)} }
+  @media (max-width:980px){
+    .menu{display:none}          /* esconde menu desktop */
+    .hamburger{display:flex}     /* mostra hamburger */
+    .timeline3{grid-template-columns:1fr}
+    .static-cards{grid-template-columns:1fr}
+    h1{font-size:42px}
+  }
+  @media (max-width:680px){ .lever-grid{grid-template-columns:repeat(2, 1fr)} }
+  @media (max-width:420px){ .lever-grid{grid-template-columns:1fr} }
+
+  footer{padding:60px 20px;border-top:1px solid #1b1b20;color:#a7a7ad;text-align: right}
+  .seal {display:inline-block;gap:10px;opacity:.7}
