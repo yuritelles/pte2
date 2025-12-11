@@ -116,17 +116,17 @@ p.lead{color:#cfcfd6;font-size:18px;max-width:74ch}
     <div class="title">Menu</div>
     <button id="closeDrawer" aria-label="Fechar menu" type="button" style="background:transparent;border:0;color:#fff;cursor:pointer;padding:8px;border-radius:10px">✕</button>
   </div>
-  <a href="index.html">Sobre o PTE</a>
-  <div class="group" role="group" aria-labelledby="gtitle-roadmaps">
-    <div class="gtitle" id="gtitle-roadmaps">Roadmaps</div>
-    <div class="gbody">
-      <a href="roadmap-afolu.html">AFOLU</a>
-      <a href="roadmap-industria.html">Indústria</a>
-      <a href="roadmap-energetico.html">Setor Energético</a>
-      <a href="roadmap-transportes.html">Transportes</a>
-      <a href="roadmap-cidades.html">Cidades</a>
-    </div>
-  </div>
+      <a href="index.html">Sobre o Programa</a>
+      <div class="dropdown" id="roadmapsDropdown">
+        <button class="dropbtn" id="roadmapsBtn" aria-haspopup="true" aria-expanded="false" aria-controls="roadmapsMenu">Roadmaps</button>
+        <div class="dropdown-content" id="roadmapsMenu" role="menu" aria-hidden="true">
+          <a href="roadmap-afolu.html" role="menuitem" tabindex="-1">AFOLU</a>
+          <a href="roadmap-industria.html" role="menuitem" tabindex="-1">Indústria</a>
+          <a href="roadmap-energetico.html" role="menuitem" tabindex="-1">Setor Energético</a>
+          <a href="roadmap-transportes.html" role="menuitem" tabindex="-1">Transportes</a>
+          <a href="roadmap-cidades.html" role="menuitem" tabindex="-1">Cidades</a>
+        </div>
+      </div>
       <a href="dados.html">Dados</a>
       <a href="publicacoes.html">Publicações</a>
 </aside>
