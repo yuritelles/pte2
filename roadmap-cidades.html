@@ -8,62 +8,15 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav class="nav">
-  <div class="wrap">
-    <div class="logo"><img src="logo_pte2.png" style="height:72px;margin:14px 0px" alt="PTE2"></div>
 
-    <div class="menu">
-      <a href="index.html">Sobre o Programa</a>
-      <div class="dropdown" id="roadmapsDropdown">
-        <button class="dropbtn" id="roadmapsBtn" aria-haspopup="true" aria-expanded="false" aria-controls="roadmapsMenu">Roadmaps</button>
-        <div class="dropdown-content" id="roadmapsMenu" role="menu" aria-hidden="true">
-          <a href="roadmap-afolu.html" role="menuitem" tabindex="-1">AFOLU</a>
-          <a href="roadmap-industria.html" role="menuitem" tabindex="-1">Indústria</a>
-          <a href="roadmap-energetico.html" role="menuitem" tabindex="-1">Setor Energético</a>
-          <a href="roadmap-transportes.html" role="menuitem" tabindex="-1">Transportes</a>
-          <a href="roadmap-cidades.html" role="menuitem" tabindex="-1">Cidades</a>
-        </div>
-      </div>
-      <a href="dados.html">Dados</a>
-      <a href="publicacoes.html">Publicações</a>
-    </div>
-
-    <div class="hamburger">
-      <button id="openDrawer" aria-label="Abrir menu" aria-controls="mobileDrawer" aria-expanded="false" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<div class="overlay" id="overlay" hidden></div>
-<aside class="drawer" id="mobileDrawer" aria-hidden="true">
-  <div class="drawer-header">
-    <div class="title">Menu</div>
-    <button id="closeDrawer" aria-label="Fechar menu" type="button" style="background:transparent;border:0;color:#fff;cursor:pointer;padding:8px;border-radius:10px">✕</button>
-  </div>
-  <a href="index.html">Sobre o PTE</a>
-  <div class="group" role="group" aria-labelledby="gtitle-roadmaps">
-    <div class="gtitle" id="gtitle-roadmaps">Roadmaps</div>
-    <div class="gbody">
-      <a href="roadmap-afolu.html">AFOLU</a>
-      <a href="roadmap-industria.html">Indústria</a>
-      <a href="roadmap-energetico.html">Setor Energético</a>
-      <a href="roadmap-transportes.html">Transportes</a>
-      <a href="roadmap-cidades.html">Cidades</a>
-    </div>
-  </div>
-  <a href="painel.html">Painel</a>
-  <a href="downloads.html">Downloads</a>
-</aside>
+<div id="menu"></div>
+<script src="menu.js"></script>
 
 <header class="hero">
   <div class="wrap">
     <div>
       <div class="eyebrow">CIDADES</div>
-      <h1>Cidades sustentáveis: planejamento urbano integrado, mobilidade limpa e eficiência</h1>
+      <h1>Planejamento urbano integrado, mobilidade limpa e eficiência</h1>
       <p class="subtitle">Transformar centros urbanos em espaços resilientes, de baixo carbono e mais equitativos — por meio da requalificação de edificações, mobilidade elétrica, gestão de resíduos e adaptação climática até 2050.</p>
     </div>
   </div>
@@ -189,14 +142,7 @@
   </div>
 </section>
 
-<footer>
-  <div class="wrap" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center">
-    <div class="seal"><img src="logos_patrocinio_pte2.png" width="70%" alt="Patrocínios PTE2"></div>
-  </div>
-</footer>
+<div id="footer"></div>
 
-<script>
-// JS idêntico ao das outras páginas
-</script>
 </body>
 </html>
