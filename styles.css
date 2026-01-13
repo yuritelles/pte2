@@ -10,8 +10,8 @@
   .gtranslate-desktop .gt-current-lang{border-radius:10px}
   .gtranslate-desktop .gt-switcher{display:flex;align-items:center}
   .gtranslate-desktop .gt-selected{border-radius:10px}
-  .nav a{padding:8px 12px;border-radius:10px;color:var(--fg);opacity:.95}
-  .nav a:hover, .nav a:focus{background:#3a3663;opacity:1;outline:none}
+  .menu a{padding:8px 12px;border-radius:10px;color:var(--fg);opacity:.95}
+  .menu a:hover, .menu a:focus{background:#3a3663;opacity:1;outline:none}
 
   /* Desktop menu */
   .menu{display:flex;gap:8px;align-items:center}
