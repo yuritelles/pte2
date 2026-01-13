@@ -28,7 +28,9 @@
       <p class="subtitle">Acesse os principais produtos do PTE2</p>
     </div>
   </div>
+</header>
 
+<section>
   <div class="wrap levers">
     <div class="lever-grid">
       <a href="Relatorio Executivo PTE2 Final.pdf">
@@ -45,9 +47,7 @@
         <p><strong>Caderno Executivo</strong><br/>Em elaboração.</p></div></a>
     </div>
   </div>
-</header>
-
-
+</section>
 
 <footer>
   <div class="wrap" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center">
@@ -55,112 +55,5 @@
   </div>
 </footer>
 
-<script>
-// Desktop dropdown: hover open + keyboard support + aria sync
-(function(){
-  const dd = document.getElementById('roadmapsDropdown');
-  const btn = document.getElementById('roadmapsBtn');
-  const menu = document.getElementById('roadmapsMenu');
-  const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
-
-  function openMenu(){
-    btn.setAttribute('aria-expanded','true');
-    menu.setAttribute('aria-hidden','false');
-    items.forEach(i=>i.tabIndex = -1);
-    items[0].tabIndex = 0;
-  }
-  function closeMenu(){
-    btn.setAttribute('aria-expanded','false');
-    menu.setAttribute('aria-hidden','true');
-    items.forEach(i=>i.tabIndex = -1);
-  }
-  function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
-
-  // Hover handling (desktop)
-  dd.addEventListener('mouseenter', openMenu);
-  dd.addEventListener('mouseleave', closeMenu);
-
-  // Keyboard open from button
-  btn.addEventListener('keydown', (e)=>{
-    const k = e.key;
-    if(k === 'ArrowDown' || k === 'Enter' || k === ' '){
-      e.preventDefault();
-      openMenu(); items[0].focus();
-    }
-  });
-
-  // Keyboard navigation inside menu
-  menu.addEventListener('keydown', (e)=>{
-    const idx = items.indexOf(document.activeElement);
-    if(e.key === 'Escape'){ e.preventDefault(); closeMenu(); btn.focus(); }
-    else if(e.key === 'ArrowDown'){
-      e.preventDefault();
-      const next = (idx + 1) % items.length;
-      items[next].focus();
-    }
-    else if(e.key === 'ArrowUp'){
-      e.preventDefault();
-      const prev = (idx - 1 + items.length) % items.length;
-      items[prev].focus();
-    }
-    else if(e.key === 'Home'){ e.preventDefault(); items[0].focus(); }
-    else if(e.key === 'End'){ e.preventDefault(); items[items.length-1].focus(); }
-  });
-})();
-
-// Mobile drawer logic (slide from left, overlay, focus trap)
-(function(){
-  const openBtn = document.getElementById('openDrawer');
-  const closeBtn = document.getElementById('closeDrawer');
-  const drawer = document.getElementById('mobileDrawer');
-  const overlay = document.getElementById('overlay');
-
-  function lockScroll(lock){
-    document.documentElement.style.overflow = lock ? 'hidden' : '';
-    document.body.style.overflow = lock ? 'hidden' : '';
-  }
-
-  function openDrawer(){
-    drawer.classList.add('show');
-    overlay.classList.add('show');
-    overlay.hidden = false;
-    drawer.setAttribute('aria-hidden','false');
-    openBtn.setAttribute('aria-expanded','true');
-    lockScroll(true);
-    closeBtn.focus();
-    document.addEventListener('keydown', trapFocus);
-  }
-  function closeDrawer(){
-    drawer.classList.remove('show');
-    overlay.classList.remove('show');
-    setTimeout(()=>overlay.hidden = true, 200);
-    drawer.setAttribute('aria-hidden','true');
-    openBtn.setAttribute('aria-expanded','false');
-    lockScroll(false);
-    openBtn.focus();
-    document.removeEventListener('keydown', trapFocus);
-  }
-
-  function trapFocus(e){
-    if(e.key !== 'Tab') return;
-    const focusables = drawer.querySelectorAll('a,button');
-    if(focusables.length === 0) return;
-    const first = focusables[0];
-    const last = focusables[focusables.length-1];
-    if(e.shiftKey && document.activeElement === first){
-      e.preventDefault(); last.focus();
-    } else if(!e.shiftKey && document.activeElement === last){
-      e.preventDefault(); first.focus();
-    }
-  }
-
-  openBtn.addEventListener('click', openDrawer);
-  closeBtn.addEventListener('click', closeDrawer);
-  overlay.addEventListener('click', closeDrawer);
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape' && drawer.classList.contains('show')) closeDrawer();
-  });
-})();
-</script>
 </body>
 </html>
