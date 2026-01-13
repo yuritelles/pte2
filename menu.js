@@ -147,7 +147,7 @@ function loadGTranslate() {
     detect_browser_language: true,
     languages: ["pt","en"],
     wrapper_selector: ".gtranslate_wrapper",
-    flag_size: 24,
+    flag_size: 16,
     alt_flags: { pt: "brazil" },
   };
 
