@@ -146,7 +146,7 @@ function loadGTranslate() {
     default_language: "pt",
     detect_browser_language: true,
     languages: ["pt","en"],
-    wrapper_selector: ".gtranslate_wrapper",
+    wrapper_selector: ".gtranslate_wrapper, .gtranslate_wrapper-mobile",
     flag_size: 16,
     alt_flags: { pt: "brazil" },
   };
@@ -157,10 +157,22 @@ function loadGTranslate() {
   document.head.appendChild(s);
 }
 
+function getActiveLanguage() {
+  const cookieMatch = document.cookie.match(/(?:^|;)\s*googtrans=([^;]+)/);
+  if (cookieMatch) {
+    const decoded = decodeURIComponent(cookieMatch[1]);
+    const parts = decoded.split("/").filter(Boolean);
+    const cookieLang = parts[parts.length - 1];
+    if (cookieLang) return cookieLang.split("-")[0];
+  }
+  const htmlLang = document.documentElement.lang;
+  if (htmlLang) return htmlLang.split("-")[0];
+  return "pt";
+}
+
 function applyGTranslateFilters(wrapper) {
   if (!wrapper) return;
-  const currentNode = wrapper.querySelector(".gt-current-lang[data-lang]");
-  const currentLang = (currentNode?.dataset.lang || document.documentElement.lang || "pt").split("-")[0];
+  const currentLang = getActiveLanguage();
   const langNodes = wrapper.querySelectorAll("[data-lang]");
   if (langNodes.length > 0) {
     langNodes.forEach((node) => {
@@ -175,24 +187,29 @@ function applyGTranslateFilters(wrapper) {
   }
 }
 
-function syncGTranslateToMobile() {
-  const desktopWrapper = document.querySelector(".gtranslate_wrapper");
-  const mobileWrapper = document.querySelector(".gtranslate_wrapper-mobile");
-  if (!desktopWrapper || !mobileWrapper) return;
-
-  const copyContent = () => {
-    if (desktopWrapper.children.length === 0) return;
-    mobileWrapper.innerHTML = desktopWrapper.innerHTML;
-    applyGTranslateFilters(desktopWrapper);
-    applyGTranslateFilters(mobileWrapper);
+function setupGTranslateFilters() {
+  const applyAll = () => {
+    document
+      .querySelectorAll(".gtranslate_wrapper, .gtranslate_wrapper-mobile")
+      .forEach((wrapper) => applyGTranslateFilters(wrapper));
   };
 
-  copyContent();
+  applyAll();
 
-  const observer = new MutationObserver(() => {
-    copyContent();
+  document.querySelectorAll(".gtranslate_wrapper, .gtranslate_wrapper-mobile").forEach((wrapper) => {
+    const observer = new MutationObserver(() => {
+      applyAll();
+    });
+    observer.observe(wrapper, { childList: true, subtree: true });
+    wrapper.addEventListener("click", () => {
+      setTimeout(applyAll, 400);
+    });
   });
-  observer.observe(desktopWrapper, { childList: true, subtree: true });
+
+  const htmlObserver = new MutationObserver(() => {
+    applyAll();
+  });
+  htmlObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
 }
 
 // === Inicialização geral ===
@@ -203,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setupDesktopDropdown();
       setupMobileDrawer();
       loadGTranslate();
-      syncGTranslateToMobile();
+      setupGTranslateFilters();
     }
   });
 
