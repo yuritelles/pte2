@@ -156,9 +156,27 @@ function loadGTranslate() {
   };
 
   const s = document.createElement("script");
-  s.src = "https://cdn.gtranslate.net/widgets/latest/globe.js";
+  s.src = "https://cdn.gtranslate.net/widgets/latest/flags.js";
   s.defer = true;
   document.head.appendChild(s);
+}
+
+function syncGTranslateToMobile() {
+  const desktopWrapper = document.querySelector(".gtranslate_wrapper");
+  const mobileWrapper = document.querySelector(".gtranslate_wrapper-mobile");
+  if (!desktopWrapper || !mobileWrapper) return;
+
+  const copyContent = () => {
+    if (desktopWrapper.children.length === 0) return;
+    mobileWrapper.innerHTML = desktopWrapper.innerHTML;
+  };
+
+  copyContent();
+
+  const observer = new MutationObserver(() => {
+    copyContent();
+  });
+  observer.observe(desktopWrapper, { childList: true, subtree: true });
 }
 
 // === Inicialização geral ===
@@ -168,14 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (ok) {
       setupDesktopDropdown();
       setupMobileDrawer();
+      loadGTranslate();
+      syncGTranslateToMobile();
     }
   });
 
   // Footer + GTranslate
   includeHTML("footer", "footer.html").then(ok => {
-    if (ok) {
-      // footer com .gtranslate_wrapper já está no DOM
-      loadGTranslate();
-    }
+    if (ok) return;
   });
 });
