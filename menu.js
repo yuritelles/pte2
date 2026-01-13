@@ -145,14 +145,11 @@ function loadGTranslate() {
   window.gtranslateSettings = {
     default_language: "pt",
     detect_browser_language: true,
-    languages: ["pt","en","es", "fr"],
-    globe_color: "#66aaff",
-    wrapper_selector: ".gtranslate_wrapper",
-    flag_size: 24,
-    horizontal_position: "right",
-    vertical_position: "bottom",
-    alt_flags: { pt: "brazil" },
-    globe_size: 40
+    default_language:"pt",
+    languages:["pt","en"],
+    wrapper_selector:".gtranslate_wrapper",
+    flag_size:16,
+    alt_flags:{"pt":"brazil"}
   };
 
   const s = document.createElement("script");
