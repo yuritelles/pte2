@@ -159,7 +159,8 @@ function loadGTranslate() {
 
 function applyGTranslateFilters(wrapper) {
   if (!wrapper) return;
-  const currentLang = (document.documentElement.lang || "pt").split("-")[0];
+  const currentNode = wrapper.querySelector(".gt-current-lang[data-lang]");
+  const currentLang = (currentNode?.dataset.lang || document.documentElement.lang || "pt").split("-")[0];
   const langNodes = wrapper.querySelectorAll("[data-lang]");
   if (langNodes.length > 0) {
     langNodes.forEach((node) => {
