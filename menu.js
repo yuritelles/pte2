@@ -178,7 +178,7 @@ function applyGTranslateFilters(wrapper) {
     langNodes.forEach((node) => {
       const lang = node.dataset.lang;
       if (!lang) return;
-      node.style.display = lang === currentLang ? "none" : "";
+      node.style.display = lang === currentLang ? "none" : "inline-flex";
     });
   }
   const current = wrapper.querySelector(".gt-current-lang");
