@@ -16,56 +16,9 @@
 </style>
 </head>
 <body>
-<nav class="nav">
-  <div class="wrap">
-    <div class="logo"><img src="logo_pte2.png" style="height:72px;margin:14px 0px" alt="PTE2"></div>
 
-    <div class="menu">
-      <a href="index.html">Sobre o Programa</a>
-      <div class="dropdown" id="roadmapsDropdown">
-        <button class="dropbtn" id="roadmapsBtn" aria-haspopup="true" aria-expanded="false" aria-controls="roadmapsMenu">Roadmaps</button>
-        <div class="dropdown-content" id="roadmapsMenu" role="menu" aria-hidden="true">
-          <a href="roadmap-afolu.html" role="menuitem" tabindex="-1">AFOLU</a>
-          <a href="roadmap-industria.html" role="menuitem" tabindex="-1">Indústria</a>
-          <a href="roadmap-energetico.html" role="menuitem" tabindex="-1">Setor Energético</a>
-          <a href="roadmap-transportes.html" role="menuitem" tabindex="-1">Transportes</a>
-          <a href="roadmap-cidades.html" role="menuitem" tabindex="-1">Cidades</a>
-        </div>
-      </div>
-      <a href="dados.html">Dados</a>
-      <a href="publicacoes.html">Publicações</a>
-    </div>
-
-    <div class="hamburger">
-      <button id="openDrawer" aria-label="Abrir menu" aria-controls="mobileDrawer" aria-expanded="false" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<div class="overlay" id="overlay" hidden></div>
-<aside class="drawer" id="mobileDrawer" aria-hidden="true">
-  <div class="drawer-header">
-    <div class="title">Menu</div>
-    <button id="closeDrawer" aria-label="Fechar menu" type="button" style="background:transparent;border:0;color:#fff;cursor:pointer;padding:8px;border-radius:10px">✕</button>
-  </div>
-  <a href="index.html">Sobre o PTE</a>
-  <div class="group" role="group" aria-labelledby="gtitle-roadmaps">
-    <div class="gtitle" id="gtitle-roadmaps">Roadmaps</div>
-    <div class="gbody">
-      <a href="roadmap-afolu.html">AFOLU</a>
-      <a href="roadmap-industria.html">Indústria</a>
-      <a href="roadmap-energetico.html">Setor Energético</a>
-      <a href="roadmap-transportes.html">Transportes</a>
-      <a href="roadmap-cidades.html">Cidades</a>
-    </div>
-  </div>
-  <a href="painel.html">Painel</a>
-  <a href="downloads.html">Downloads</a>
-</aside>
+<div id="menu"></div>
+<script src="menu.js"></script>
 
 <header class="hero">
   <div class="wrap">
