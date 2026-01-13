@@ -146,7 +146,7 @@ function loadGTranslate() {
     default_language: "pt",
     detect_browser_language: true,
     languages: ["pt","en"],
-    wrapper_selector: ".gtranslate_wrapper",
+    wrapper_selector: ".gtranslate_wrapper, .gtranslate_wrapper-mobile",
     flag_size: 16,
     alt_flags: { pt: "brazil" },
   };
@@ -175,24 +175,25 @@ function applyGTranslateFilters(wrapper) {
   }
 }
 
-function syncGTranslateToMobile() {
-  const desktopWrapper = document.querySelector(".gtranslate_wrapper");
-  const mobileWrapper = document.querySelector(".gtranslate_wrapper-mobile");
-  if (!desktopWrapper || !mobileWrapper) return;
+function setupGTranslateFilters() {
+  const wrappers = document.querySelectorAll(".gtranslate_wrapper, .gtranslate_wrapper-mobile");
+  if (wrappers.length === 0) return;
 
-  const copyContent = () => {
-    if (desktopWrapper.children.length === 0) return;
-    mobileWrapper.innerHTML = desktopWrapper.innerHTML;
-    applyGTranslateFilters(desktopWrapper);
-    applyGTranslateFilters(mobileWrapper);
+  const applyAll = () => {
+    wrappers.forEach((wrapper) => applyGTranslateFilters(wrapper));
   };
 
-  copyContent();
+  applyAll();
 
-  const observer = new MutationObserver(() => {
-    copyContent();
+  wrappers.forEach((wrapper) => {
+    const observer = new MutationObserver(() => {
+      applyAll();
+    });
+    observer.observe(wrapper, { childList: true, subtree: true });
+    wrapper.addEventListener("click", () => {
+      setTimeout(applyAll, 0);
+    });
   });
-  observer.observe(desktopWrapper, { childList: true, subtree: true });
 }
 
 // === Inicialização geral ===
@@ -203,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setupDesktopDropdown();
       setupMobileDrawer();
       loadGTranslate();
-      syncGTranslateToMobile();
+      setupGTranslateFilters();
     }
   });
 
