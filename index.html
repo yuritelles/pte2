@@ -78,6 +78,31 @@ p.lead{color:#cfcfd6;font-size:18px;max-width:74ch}
 .lever { background-color: rgba(0,0,0,0.4) }
 .lead { font-size: 28px !important }
 
+@media (max-width: 900px){
+  header.hero{padding:160px 16px 60px}
+  h1{font-size:40px}
+  .subtitle{font-size:18px}
+  .lead{font-size:20px !important}
+  .grid3{grid-template-columns:1fr}
+  .roadmap-teasers{grid-template-columns:repeat(2, 1fr)}
+  .lever-grid{grid-template-columns:repeat(2, 1fr)}
+}
+
+@media (max-width: 600px){
+  header.hero{padding:140px 16px 48px}
+  h1{font-size:32px;line-height:1.1}
+  .subtitle{font-size:16px}
+  .lead{font-size:18px !important}
+  .lever-grid{grid-template-columns:1fr}
+  .roadmap-teasers{grid-template-columns:1fr}
+  .scenario{
+    grid-template-columns:1fr;
+    align-items:start;
+  }
+  .scenario .sigla{justify-content:flex-start;font-size:3em}
+  .scenario .title{font-size:1.4em}
+}
+
 </style>
 
 </head>
