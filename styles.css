@@ -6,6 +6,10 @@
   .nav{position:fixed;top:0;left:0;right:0;background:#2F2B4C;border-bottom:1px solid #1b1b1f;z-index:1000}
   .nav .wrap{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
   .logo{display:flex;gap:10px;align-items:center}
+  .gtranslate-desktop{margin-left:16px}
+  .gtranslate-desktop .gt-current-lang{border-radius:10px}
+  .gtranslate-desktop .gt-switcher{display:flex;align-items:center}
+  .gtranslate-desktop .gt-selected{border-radius:10px}
   .nav a{padding:8px 12px;border-radius:10px;color:var(--fg);opacity:.95}
   .nav a:hover, .nav a:focus{background:#3a3663;opacity:1;outline:none}
 
@@ -73,6 +77,8 @@
     padding:10px 14px;font-weight:600;letter-spacing:.02em;color:#dfe2ff;border-bottom:1px solid #2A2B49;background:#242541
   }
   .group .gbody a{padding-left:22px}
+  .gtranslate_wrapper-mobile{padding:12px 18px}
+  .gtranslate_wrapper-mobile .gt-switcher{display:flex;align-items:center}
 
   header.hero{
     padding:240px 20px 80px 60px;border-bottom:1px solid #15151a;
@@ -144,6 +150,7 @@
     .timeline3{grid-template-columns:1fr}
     .static-cards{grid-template-columns:1fr}
     h1{font-size:42px}
+    .gtranslate-desktop{display:none}
   }
   @media (max-width:680px){ .lever-grid{grid-template-columns:repeat(2, 1fr)} }
   @media (max-width:420px){ .lever-grid{grid-template-columns:1fr} }
