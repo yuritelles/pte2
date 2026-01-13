@@ -188,10 +188,29 @@ function applyGTranslateFilters(wrapper) {
 }
 
 function setupGTranslateFilters() {
+  let refreshTimer = null;
+
   const applyAll = () => {
     document
       .querySelectorAll(".gtranslate_wrapper, .gtranslate_wrapper-mobile")
       .forEach((wrapper) => applyGTranslateFilters(wrapper));
+  };
+
+  const scheduleRefreshUntilChange = (previousLang) => {
+    if (refreshTimer) {
+      clearInterval(refreshTimer);
+      refreshTimer = null;
+    }
+    let attempts = 0;
+    refreshTimer = setInterval(() => {
+      attempts += 1;
+      const currentLang = getActiveLanguage();
+      applyAll();
+      if (currentLang !== previousLang || attempts >= 20) {
+        clearInterval(refreshTimer);
+        refreshTimer = null;
+      }
+    }, 100);
   };
 
   applyAll();
@@ -202,7 +221,7 @@ function setupGTranslateFilters() {
     });
     observer.observe(wrapper, { childList: true, subtree: true });
     wrapper.addEventListener("click", () => {
-      setTimeout(applyAll, 400);
+      scheduleRefreshUntilChange(getActiveLanguage());
     });
   });
 
@@ -210,6 +229,14 @@ function setupGTranslateFilters() {
     applyAll();
   });
   htmlObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    if (target.closest(".gtranslate_wrapper, .gtranslate_wrapper-mobile")) {
+      scheduleRefreshUntilChange(getActiveLanguage());
+    }
+  });
 }
 
 // === Inicialização geral ===
