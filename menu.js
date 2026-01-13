@@ -145,18 +145,37 @@ function loadGTranslate() {
   window.gtranslateSettings = {
     default_language: "pt",
     detect_browser_language: true,
-    default_language:"pt",
-    languages:["pt","en"],
-    wrapper_selector:".gtranslate_wrapper",
-    flag_size:16,
-    globe_size:20,
-    alt_flags:{"pt":"brazil"}
+    languages: ["pt","en"],
+    globe_color: "#66aaff",
+    wrapper_selector: ".gtranslate_wrapper",
+    flag_size: 24,
+    horizontal_position: "right",
+    vertical_position: "bottom",
+    alt_flags: { pt: "brazil" },
+    globe_size: 40
   };
 
   const s = document.createElement("script");
   s.src = "https://cdn.gtranslate.net/widgets/latest/flags.js";
   s.defer = true;
   document.head.appendChild(s);
+}
+
+function applyGTranslateFilters(wrapper) {
+  if (!wrapper) return;
+  const currentLang = (document.documentElement.lang || "pt").split("-")[0];
+  const langNodes = wrapper.querySelectorAll("[data-lang]");
+  if (langNodes.length > 0) {
+    langNodes.forEach((node) => {
+      const lang = node.dataset.lang;
+      if (!lang) return;
+      node.style.display = lang === currentLang ? "none" : "";
+    });
+  }
+  const current = wrapper.querySelector(".gt-current-lang");
+  if (current) {
+    current.style.display = "none";
+  }
 }
 
 function syncGTranslateToMobile() {
@@ -167,6 +186,8 @@ function syncGTranslateToMobile() {
   const copyContent = () => {
     if (desktopWrapper.children.length === 0) return;
     mobileWrapper.innerHTML = desktopWrapper.innerHTML;
+    applyGTranslateFilters(desktopWrapper);
+    applyGTranslateFilters(mobileWrapper);
   };
 
   copyContent();
